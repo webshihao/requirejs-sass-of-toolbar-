@@ -1,0 +1,62 @@
+$toolbar-size: 52px;
+@mixin toolbar-pos($pos,$hoverPos){
+	background-position: 0 $pos;
+	&:hover {
+		background-position: 0 $hoverPos;
+	}
+}
+.toolbar-item,.toolbar-layer {
+	background-image: url(../img/toolbar.png);
+	background-repeat: no-repeat;
+}
+.toolbar {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -$toolbar-size / 2;
+}
+.toolbar-item {
+	width: $toolbar-size;
+	height: $toolbar-size;
+	margin-bottom: 1px;
+	position: relative;
+	display: block;
+	@include transition(background-position .2s);
+	&:hover {
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-layer {
+	width: 368px;
+	display: block;
+	position: absolute;
+	@include transition(all .4s);
+	@include opacity(0);
+	@include scale(0);
+	@include transform-origin(100% 100%);
+	right: 52px;
+	bottom: 0;
+}
+.toolbar-weixin {
+	@include toolbar-pos(-372px,-434px);
+	.toolbar-layer {
+		background-position: -56px 0;
+		height: 166px;
+	}
+}
+.toolbar-talk {
+	@include toolbar-pos(0px,-62px);
+}
+.toolbar-app {
+	@include toolbar-pos(-124px,-186px);
+	.toolbar-layer {
+		background-position: -56px 0;
+		height: 166px; 
+	}
+}
+.toolbar-top {
+	@include toolbar-pos(-248px,-310px);
+}
